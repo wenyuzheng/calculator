@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import './App.css';
+import MyButton from './MyButton';
 
 // const MyButton = ({number, handler}) => {
 //   return (
@@ -37,20 +38,16 @@ import './App.css';
 
 
 // Work To Do: 
-// 1. complete two tasks written in the code 
-// 2. adjust display using css
+// 1. Get all buttons to turn grey on click
+// 2. Make Ans button work
+// 3. Use display grid for css
 
 //Improvement: 
 // 1. Handlers can be used directly in onClick
-// 2. add C button to clear [complete]
+// 2. Make hotkeys (ie press on keybroad)
 
 const App = () => {
-  const MyButton = (props) => {
-    return (
-      <button onClick={() => onClickHandler(props.number)}>{props.number}</button>
-    )
-  }
-
+  
   const [stateValue, setStateValue] = useState("");
 
   const [answer, setAnswer] = useState("");
@@ -72,9 +69,6 @@ const App = () => {
   }
 
   const answerHandler = () => {
-    // Work To Do: Ans button handler
-    // Create variable to store current answer
-    // Next answer then overwirtes  
   }
 
   const clearHandler = () => {
@@ -94,9 +88,15 @@ const App = () => {
 
       <div>
         <div>
-            {numbers.map((num) => {
+            {numbers.map((number) => {
+              const myButtonProps = {
+                number,
+                "key": number,
+                onClickHandler
+                // onClickHandler: onClickHandler
+              }
               return (
-                <MyButton number={num} key={num} />
+                <MyButton {...myButtonProps}/>
               )
             })}
 
