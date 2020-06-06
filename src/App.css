@@ -37,10 +37,6 @@
   }
 }
 
-.buttons {
-  display: block;
-}
-
 button{
   width: 50px;
   font-size: 16px;
@@ -49,7 +45,7 @@ button{
   border-radius: 5px;
 }
 
-.div1 {
+.InOutput {
   border: 1px solid black;
   margin: 10px auto;
   width: 305px;
@@ -70,6 +66,7 @@ button{
   margin: 10px;
   background-color: white;
   border: 1px solid grey;
+  text-align: right;
 }
 
 .out {
@@ -77,12 +74,4 @@ button{
   width: 332px;
   padding: 15px;
   margin: 10px auto;
-}
-
-.div2 {
-  display: flex;
-}
-
-.div3 {
-  margin: auto;
 }

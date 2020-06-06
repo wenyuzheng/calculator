@@ -36,7 +36,13 @@ import './App.css';
 
 
 
+// Work To Do: 
+// 1. complete two tasks written in the code 
+// 2. adjust display using css
 
+//Improvement: 
+// 1. Handlers can be used directly in onClick
+// 2. add C button to clear [complete]
 
 const App = () => {
   const MyButton = (props) => {
@@ -47,52 +53,60 @@ const App = () => {
 
   const [stateValue, setStateValue] = useState("");
 
+  const [answer, setAnswer] = useState("");
+
   const onClickHandler = (number) => {
-    const newStatevalue = stateValue + number;
-    setStateValue(newStatevalue);
+    setStateValue(stateValue + number);
   }
 
+  const deleteHandler = () => {
+    setStateValue(stateValue.slice(0, -1));
+  }
+
+  const equalHandler = () => { // Warining: eval() is harmful!
+    try {
+      setAnswer(eval(stateValue)); 
+    } catch {
+      alert("Invalid equation!!!");
+    }
+  }
+
+  const answerHandler = () => {
+    // Work To Do: Ans button handler
+    // Create variable to store current answer
+    // Next answer then overwirtes  
+  }
+
+  const clearHandler = () => {
+    setStateValue("");
+    setAnswer("");
+  }
+
+  const numbers = ["1", "2", "3", "(", ")","4", "5", "6", "+", "-", "7", "8", "9", "*", "/", ".", "0"]
+
   return (
-    <div class="out">
-      <div class="div1">
-        <div class="UserInput">{stateValue}</div>
-        <div class="CalculatorOutput"></div>
+    <div className="out">
+
+      <div className="InOutput">
+        <div className="UserInput">{stateValue}</div>
+        <div className="CalculatorOutput">{answer}</div>
       </div>
-      <div class="div2">
-        <div class="div3">
-          <div class="buttons">
-            <MyButton number={"1"} />
-            <MyButton number={"2"} />
-            <MyButton number={"3"} />
-            <MyButton number={"("} />
-            <MyButton number={")"} />
-          </div>
 
-          <div class="buttons">
-            <MyButton number={"4"} />
-            <MyButton number={"5"} />
-            <MyButton number={"6"} />
-            <MyButton number={"+"} />
-            <MyButton number={"-"} />
-          </div>
+      <div>
+        <div>
+            {numbers.map((num) => {
+              return (
+                <MyButton number={num} key={num} />
+              )
+            })}
 
-          <div class="buttons">
-            <MyButton number={"7"} />
-            <MyButton number={"8"} />
-            <MyButton number={"9"} />
-            <MyButton number={"*"} />
-            <MyButton number={"/"} />
-          </div>
-
-          <div class="buttons">
-            <MyButton number={"."} />
-            <MyButton number={"0"} />
-            <button >del</button>
-            <button >Ans</button>
-            <MyButton number={"="} />
-          </div>
+            <button onClick={deleteHandler}>Del</button>
+            <button onClick={answerHandler}>Ans</button>
+            <button onClick={equalHandler}>=</button>
+            <button onClick={clearHandler}>C</button>
         </div>
       </div>
+
     </div>
   );
 }
