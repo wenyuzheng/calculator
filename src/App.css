@@ -38,10 +38,7 @@
 }
 
 button{
-  width: 50px;
   font-size: 16px;
-  margin: 5px;
-  height: 40px;
   border-radius: 5px;
 }
 
@@ -74,4 +71,16 @@ button{
   width: 332px;
   padding: 15px;
   margin: 10px auto;
+}
+
+.container { 
+  display: grid;
+  grid: auto-flow dense 40px / repeat(5, 50px);
+  gap: 10px;
+  margin: 20px;
+  place-items: stretch;
+}
+
+.item {
+  grid-area: 4 / 5 / 6 / 6;
 }

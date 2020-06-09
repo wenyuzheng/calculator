@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import './App.css';
 import MyButton from './MyButton';
+import {HotKeys} from 'react-hotkeys';
 
 // const MyButton = ({number, handler}) => {
 //   return (
@@ -52,6 +53,8 @@ const App = () => {
 
   const [answer, setAnswer] = useState("");
 
+  const [storedAnswer, setStoredAnswer] = useState("");
+
   const onClickHandler = (number) => {
     setStateValue(stateValue + number);
   }
@@ -69,6 +72,8 @@ const App = () => {
   }
 
   const answerHandler = () => {
+    setStoredAnswer(answer);
+    console.log(storedAnswer);
   }
 
   const clearHandler = () => {
@@ -76,7 +81,7 @@ const App = () => {
     setAnswer("");
   }
 
-  const numbers = ["1", "2", "3", "(", ")","4", "5", "6", "+", "-", "7", "8", "9", "*", "/", ".", "0"]
+  const numbers = ["1", "2", "3", "(", ")", "4", "5", "6", "+", "-","7", "8", "9", "*", "/", ".", "0", "Ans", "=", "C", "Del" ]
 
   return (
     <div className="out">
@@ -87,26 +92,25 @@ const App = () => {
       </div>
 
       <div>
-        <div>
+        <div className="container">
             {numbers.map((number) => {
               const myButtonProps = {
                 number,
                 "key": number,
-                onClickHandler
-                // onClickHandler: onClickHandler
+                onClickHandler, // = (onClickHandler: onClickHandler)
               }
               return (
                 <MyButton {...myButtonProps}/>
               )
             })}
 
-            <button onClick={deleteHandler}>Del</button>
+            {/* <button onClick={deleteHandler}>Del</button>
             <button onClick={answerHandler}>Ans</button>
-            <button onClick={equalHandler}>=</button>
-            <button onClick={clearHandler}>C</button>
+            <button onClick={equalHandler}>=</button> */}
+            <button className = "item" onClick={clearHandler}>C</button>
         </div>
       </div>
-
+      
     </div>
   );
 }
